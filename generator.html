@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade AI Master - Prompt Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 생성기 전용 추가 스타일 */
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 0.9rem; }
+        textarea, select, input { 
+            width: 100%; padding: 12px; border: 1px solid var(--border); 
+            border-radius: 8px; font-family: inherit; font-size: 1rem;
+        }
+        .submit-btn {
+            width: 100%; padding: 16px; background: var(--accent); color: white;
+            border: none; border-radius: 12px; font-weight: 800; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3); transition: 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(14, 165, 233, 0.4); }
+        .result-area { 
+            margin-top: 30px; padding: 20px; background: #f0f9ff; 
+            border: 1px dashed var(--accent); border-radius: 12px; min-height: 100px;
+            white-space: pre-wrap; font-size: 0.95rem; line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>TRADE AI MASTER</h1>
+        <button class="category-btn" onclick="location.href='index.html'">📖 이론 백과사전으로</button>
+        <div style="padding: 20px; color: #94a3b8; font-size: 0.8rem; line-height: 1.4;">
+            작성하신 이론을 바탕으로<br>최적의 프롬프트를 생성합니다.
+        </div>
+    </nav>
+
+    <main id="main-scroll">
+        <div class="topic-wrapper">
+            <div class="topic-title"><span class="idx">🚀</span> AI 프롬프트 생성기</div>
+            
+            <div class="match-card" style="flex-direction: column; padding: 30px;">
+                <div class="input-group">
+                    <label>1. AI의 역할(Persona) 선택</label>
+                    <select id="persona">
+                        <option value="무역 전문가">10년 경력 무역 전문가</option>
+                        <option value="관세사">20년 경력 베테랑 관세사</option>
+                        <option value="마케터">글로벌 B2B 마케팅 전문가</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>2. 수행할 작업(Task) 내용</label>
+                    <textarea id="task" rows="3" placeholder="예: 신규 바이어에게 보낼 영문 이메일 초안 작성해줘"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>3. 적용할 프레임워크</label>
+                    <select id="framework">
+    <option value="5W1H">5W1H (육하원칙 전략 수립)</option>
+    <option value="CO-STAR">CO-STAR (상황/목적/대상 중심)</option>    
+    <option value="PAS">PAS (문제 제기 및 해결책 제시)</option>
+    <option value="AIDA">AIDA (주의/관심/욕구/행동 유도)</option>
+    <option value="RISEN">RTF (역할/작업/형식 지정)</option>
+    <option value="BAB">BAB (성공 스토리 설득 기법)</option>
+    <option value="None">선택 안 함 (기본 생성)</option>
+</select>
+                </div>
+
+
+                <div class="input-group">
+                    <label>4. 참고할 샘플 예시 (Few-shot)</label>
+                    <textarea id="fewshot" rows="2" placeholder="참고할 예시가 있다면 입력하세요 (없으면 비워두기)"></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="generatePrompt()">고급 프롬프트 생성하기</button>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+    <div>
+        <label>✨ 설계된 최적화 프롬프트</label>
+        <div class="result-area" id="promptDisplay" style="background: #f8fafc; border-color: #94a3b8; min-height: 200px;">
+            설계된 프롬프트가 여기에 나타납니다.
+        </div>
+    </div>
+    <div>
+        <label>🤖 AI 실행 결과</label>
+        <div class="result-area" id="answerDisplay" style="background: #f0f9ff; border-color: #0ea5e9; min-height: 200px;">
+            위 프롬프트로 실행한 결과가 여기에 나타납니다.
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    
+ async function generatePrompt() {
+    const persona = document.getElementById('persona').value;
+    const task = document.getElementById('task').value;
+    const framework = document.getElementById('framework').value;
+    const fewshot = document.getElementById('fewshot').value;
+    
+    // 결과창 id를 바뀐 구조에 맞게 가져옵니다.
+    const promptDisplay = document.getElementById('promptDisplay');
+    const answerDisplay = document.getElementById('answerDisplay');
+
+    if(!task) {
+        alert("작업 내용을 입력해주세요!");
+        return;
+    }
+
+    // 화면에 진행 중임을 알림
+    promptDisplay.innerText = "프롬프트를 설계 중입니다...";
+    answerDisplay.innerText = "대기 중...";
+
+    let rawInput = `역할: ${persona}, 프레임워크: ${framework}, 작업내용: ${task}, 샘플: ${fewshot}`;
+
+    try {
+        const response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: rawInput })
+        });
+
+        const data = await response.json();
+        
+        if (data.optimized_prompt) {
+            // 서버에서 보내준 두 가지 데이터를 각각의 창에 뿌려줍니다.
+            promptDisplay.innerText = data.optimized_prompt;
+            answerDisplay.innerText = data.final_answer;
+        } else {
+            promptDisplay.innerText = "에러 발생: " + data.error;
+            answerDisplay.innerText = "에러 발생";
+        }
+    } catch (error) {
+        promptDisplay.innerText = "서버 연결 실패: " + error.message;
+        answerDisplay.innerText = "서버 연결 실패";
+    }
+}
+    </script>
+</body>fun
+</html>
