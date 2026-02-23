@@ -9,15 +9,17 @@
 </head>
 <body>
 
-    <nav>
+  <nav>
         <h1>TRADE AI MASTER</h1>
-        <button class="category-btn active" onclick="switchTab(event, 'group1')">기초 원리 및 구조화</button>
+        <button class="category-btn active" onclick="switchTab(event, 'group5')">KEY POINT</button>
+        <button class="category-btn" onclick="switchTab(event, 'group1')">기초 원리 및 구조화</button>
         <button class="category-btn" onclick="switchTab(event, 'group2')">실전 응용 및 패턴</button>
         <button class="category-btn" onclick="switchTab(event, 'group3')">프레임워크</button>
+        <button class="category-btn" onclick="switchTab(event, 'group4')">고도화 및 자동화 기법</button>
     </nav>
 
     <main id="main-scroll">
-        <div id="group1" class="content-view active">
+        <div id="group1" class="content-view">
             
             <div class="topic-wrapper">
                 <div class="topic-title"><span class="idx">01.</span> 프롬프트의 3가지 유형 </div>
@@ -567,11 +569,214 @@ Bridge : 목표를 달성하기 위해 우리가 해야 할 구체적인 실천 
             </div>
         </div>
 
-    </div> </main>
+    </div> 
 
         </div>
+        <div id="group4" class="content-view">
+    
+    <div class="topic-wrapper">
+        <div class="topic-title"><span class="idx">26.</span> 다중 관점 기법 : 여러 관점으로 보기</div>
+        <div class="vertical-layout">
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">핵심 원리</span>
+                    <p>문화권별 분석 포함, 관점의 충돌/동의/보완을 통해 완전한 해결책 발견</p>
+                    <p style="font-size: 0.85rem; color: #64748b;">
+                        - 전문가: 실용성↑ 감성↓<br>
+                        - 사용자: 공감↑ 전문성↓<br>
+                        - 낙관론: 가능성↑ 리스크↓<br>
+                        - 비관론: 리스크↑ 기회↓
+                    </p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">5가지 분석 원칙</span>
+                    <div class="recipe-text">1. 이해관계자 차원 : 관련된 사람들의 서로 다른 입장
+2. 전문 분야 차원 : 다른 학문과 직종의 시각
+3. 시간 차원 : 과거 / 현재 / 미래 시각
+4. 가치관 차원 : 다른 철학과 우선순위
+5. 문화, 맥락 차원 : 다른 환경 배경의 시각 (나라별 분석 가능)</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">구현 방법론</span>
+                    <p>병렬 관점, 대화 시뮬레이션, 레이어 분석</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">방법 1~3 프롬프트 레시피</span>
+                    <div class="recipe-text">#방법1 : 병렬 관점 소환
+"아래 주제를 {N가지 관점}에서 동시에 분석하세요. 각 관점은 독립적으로 분석하되 마지막에 교차점을 찾아주세요."
+
+#방법2 : 대화 시뮬레이션
+"{관점A}, {관점 B}, {관점 C}가 같은 테이블에 앉아 토론합니다. 주장, 반론, 결론을 써주세요."
+
+#방법3 : 레이어 분석
+"주제를 {레이어1}에서 {레이어N}까지 쌓아가며 분석하세요. 아래 층위가 위 층위를 어떻게 규정하는지 보여주세요."</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">실무 예제 3가지</span>
+                    <p></p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">상세 시나리오 예시</span>
+                    <div class="recipe-text">Ex1) 중소기업 수출 자동화 시스템 도입 이해관계자 분석 (대표, 무역 팀장, 팀원, IT 외주업체)
+- 핵심 욕구, 핵심 공포, 겉으로 말하는 것 vs 속마음, 협상력 분석
+
+Ex2) 5가지 전문 분야 렌즈 분석 (심리학 / 경제학 / 시스템공학 / 인류학 / 게임 디자인)
+- 무역팀의 자동화 도구 활용 저조 문제 분석
+
+Ex3) 3개 시간 레이어 분석 (한국 중소기업의 무역 디지털 격차)
+- 레이어 1(과거), 레이어 2(현재), 레이어 3(미래) 간의 영향 관계 분석</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-wrapper">
+        <div class="topic-title"><span class="idx">27.</span> 심사숙고 유도 기법 & COT</div>
+        <div class="vertical-layout">
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">사고 매커니즘</span>
+                    <p>즉답이 아닌 깊고 정확한 답을 내놓게 하기 위한 4단계 설계</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">심층 사고 유도 절차</span>
+                    <div class="recipe-text">매커니즘 1 : 출력 전 사고 공간 확보 (답 쓰기 전 먼저 생각하기)
+매커니즘 2 : 사고 단계 강제 (건너뛸 수 없는 To-do 리스트 설계)
+매커니즘 3 : 자기 검증 루프 (답을 낸 후 스스로 검토)
+매커니즘 4 : 불확실성 명시 요구 (모르는 것과 아는 것을 구분하여 환각 방지)</div>
+                </div>
+            </div>
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">COT (Chain of Thought)</span>
+                    <p>복잡한 문제를 단계적으로 추론하게 만드는 기법</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">적용 예시</span>
+                    <div class="recipe-text">Ex1) "우리 회사가 베트남에 진출해야 할지 단계별로 생각하면서 판단해줘. 각 단계에서 내린 중간 결론을 보여줘."
+
+Ex2)* 페르소나 적용 시 : "너는 20년차 개발자 COT야."</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-wrapper">
+        <div class="topic-title"><span class="idx">28.</span> APE (Automatic Prompt Engineer)</div>
+        <div class="vertical-layout">
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">마스터 프롬프트</span>
+                    <p>Gems나 GPTs 제작 시 유용한 자동 생성 및 평가 시스템</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">APE 실행 순서 (STEP 1~4)</span>
+                    <div class="recipe-text">STEP 1 : 후보 생성 (역할부여, 단계별, 예시포함, 제약명시, 목적중심, 독자설정, 형식지정, 품질기준, 역방향, 메타지시형 등 10개)
+STEP 2 : 자체 평가 (명확성, 완전성, 실행가능성, 품질유도력 각 25점 / 총 100점)
+STEP 3 : 상위 3개 교차 최적화 및 결합
+STEP 4 : 최적 프롬프트 전문 출력 및 사용 주의사항 설명</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">분야별 최적화 예시</span>
+                    <p>이메일 작성 및 코딩 작업 APE 프레임워크</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">이메일/코딩 APE 템플릿</span>
+                    <div class="recipe-text"># 이메일 작업: 고객 클레임 답장 (고객 신뢰 확보 목적, 방어적 태도 제외)
+
+# 코딩 작업: 실행 가능성(30), 완전성(25), 가독성(25), 확장성(20) 기준 적용
+- 질문 진화 : "코드 만들어줘" -> "에러처리 및 주석 포함, 실무에 바로 쓰는 완성 코드 작성해줘"
+
+* 활용 팁: "내가 (무역)도메인에서 사용할 APE를 만들건데 최적화 프롬프트 템플릿 만들어줘"와 같이 역질문 활용 가능</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div id="group5" class="content-view active">
+    <div class="topic-wrapper">
+        <div class="topic-title"><span class="idx">★</span> AI 프롬프트 잘 쓰는 방법 : 5가지 열쇠</div>
+        <div class="vertical-layout">
+            
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">KEY 01</span> <strong style="font-size: 1.1rem; color: var(--primary); margin-left: 8px;">명확하고 구체적으로 지시하기</strong>
+                    <p style="margin-top: 10px;">프레임워크 등을 활용하여 지시사항을 상세히 규정</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">비교 예시</span>
+                    <div class="recipe-text">❌ 마케팅 좀 알려줘
+⭕ 월 예산 50만원으로 40대 타겟의 매출을 20% 올릴 아이디어 3개 제안해줘</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">KEY 02</span> <strong style="font-size: 1.1rem; color: var(--primary); margin-left: 8px;">CONTEXT(맥락) 제공</strong>
+                    <p style="margin-top: 10px;">목적지까지 가는 상세 내비게이션을 찍어주는 배경 정보 과정</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">비교 예시</span>
+                    <div class="recipe-text">❌ 은퇴 준비글 써줘
+⭕ 나는 10년차 재무 상담사야. 불안해하는 50대 직장인에게 따뜻한 조언조로 써줘</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">KEY 03</span> <strong style="font-size: 1.1rem; color: var(--primary); margin-left: 8px;">말보다 샘플 하나 보여주기 (퓨샷)</strong>
+                    <p style="margin-top: 10px;">원하는 결과의 톤앤매너를 직접적인 예시로 전달</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">비교 예시</span>
+                    <div class="recipe-text">❌ 감동적인 이메일 써줘
+⭕ 내가 쓴 이 예시와 비슷한 톤앤매너로 고객 감사 메일 써줘
+""" 샘플 예제 """</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">KEY 04</span> <strong style="font-size: 1.1rem; color: var(--primary); margin-left: 8px;">거대한 업무는 잘게 쪼개기</strong>
+                    <p style="margin-top: 10px;">기획 → 카테고리 선정 → 상세 내용 작성의 순서대로 단계별 질문</p>
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">비교 예시</span>
+                    <div class="recipe-text">❌ 사업계획서 한 번에 짜줘
+⭕ 먼저 핵심 컨셉 3개만 제안해줘, 그 중 하나로 상세 목차 짜보자</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="theory-part">
+                    <span class="type-tag">KEY 05</span> <strong style="font-size: 1.1rem; color: var(--primary); margin-left: 8px;">AI를 파트너로 대하기</strong>
+                    <p style="margin-top: 10px;">결과물을 완성본이 아닌 "초안"으로 대하며 사람이 확인 후 수정</p>
+                    <br>※ 원하는 답변이 한 번에 나오지 않음을 인지할 것
+                </div>
+                <div class="recipe-part">
+                    <span class="recipe-tag">비교 예시</span>
+                    <div class="recipe-text">⭕ 이 부분은 좀 더 전문가 답게 고쳐줘, 사례를 하나 더 추가해줘
+</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
     </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
